@@ -1,0 +1,35 @@
+{
+  "name": "synbod-env",
+  "version": "0.0.1",
+  "description": "The Synbod UI lib development environment",
+  "main": "index.js",
+  "scripts": {
+    "storybook": "start-storybook -p 6006",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Synbod/synbod-env.git"
+  },
+  "keywords": [
+    "webcomponents",
+    "storybook",
+    "lit-html"
+  ],
+  "author": "Chris Chou <chhschou@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Synbod/synbod-env/issues"
+  },
+  "homepage": "https://github.com/Synbod/synbod-env#readme",
+  "devDependencies": {
+    "@storybook/polymer": "^4.1.4",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "lit-html": "^0.14.0",
+    "polymer-webpack-loader": "^2.0.3",
+    "ts-loader": "^5.3.2",
+    "typescript": "^3.2.2"
+  }
+}

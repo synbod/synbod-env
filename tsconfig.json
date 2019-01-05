@@ -6,7 +6,11 @@
     "removeComments": true,
     "preserveConstEnums": true,
     "outDir": "./dist",
-    "sourceMap": true
+    "sourceMap": true,
+    "baseUrl": ".",
+    "paths": {
+      "synbod-pivot-table-crate/*": ["./components/synbod-pivot-table/crate/*"]
+    }
   },
   "include": ["components/**/*"],
   "exclude": ["node_modules"],

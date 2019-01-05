@@ -9,7 +9,9 @@
     "sourceMap": true,
     "baseUrl": ".",
     "paths": {
-      "synbod-pivot-table-crate/*": ["./components/synbod-pivot-table/crate/*"]
+      "synbod-pivot-table-crate-pkg": [
+        "./components/synbod-pivot-table/crate/pkg"
+      ]
     }
   },
   "include": ["components/**/*"],

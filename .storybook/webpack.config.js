@@ -34,29 +34,31 @@ module.exports = (baseConfig, env, defaultConfig) => {
   defaultConfig.module.rules.push({
     test: /\.tsx?$/,
     use: 'ts-loader',
-    exclude: /node_modules/
+    exclude: /node_modules/,
   });
   defaultConfig.resolve.extensions.push('.ts', '.tsx', '.wasm');
-
-  defaultConfig.resolve.alias['synbod-pivot-table-crate'] = path.resolve(
-    __dirname,
-    '../components/synbod-pivot-table/crate'
-  );
+  defaultConfig.resolve.plugins = [
+    new TsconfigPathsPlugin({
+      configFile: path.resolve(__dirname, '../tsconfig.json'),
+      mainFields: ['module'],
+    }),
+  ];
+  // defaultConfig.resolve.alias['synbod-pivot-table-crate'] = path.resolve(
+  //   __dirname,
+  //   '../components/synbod-pivot-table/crate'
+  // );
 
   // compile wasms
   const dirs = searchRecursive(
     path.resolve(__dirname, '../components'),
     'Cargo.toml'
   );
-  console.log('dirs', dirs);
-  dirs.forEach(dir => {
+  // console.log('dirs', dirs);
+  dirs.forEach((dir) => {
     defaultConfig.plugins.push(new WasmPackPlugin({ crateDirectory: dir }));
-    defaultConfig.plugins.push(
-      new TsconfigPathsPlugin({
-        configFile: path.resolve(__dirname, '../tsconfig.json')
-      })
-    );
   });
+
+  defaultConfig.stats = 'verbose';
 
   return defaultConfig;
 };

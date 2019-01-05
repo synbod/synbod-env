@@ -22,6 +22,28 @@
     "url": "https://github.com/Synbod/synbod-env/issues"
   },
   "homepage": "https://github.com/Synbod/synbod-env#readme",
+  "editorconfig": {
+    "root": true,
+    "rules": {
+      "*": {
+        "indent_style": "space",
+        "indent_size": "2",
+        "end_of_line": "lf",
+        "charset": "utf-8",
+        "trim_trailing_whitespace": true,
+        "insert_final_newline": true,
+        "max_line_length": "120"
+      },
+      "*.{md,markdown}": {
+        "trim_trailing_whitespace": false
+      }
+    }
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "singleQuote": true,
+    "arrowParens": "always"
+  },
   "devDependencies": {
     "@storybook/polymer": "^4.1.4",
     "@wasm-tool/wasm-pack-plugin": "^0.2.0",

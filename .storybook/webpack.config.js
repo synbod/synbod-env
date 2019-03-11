@@ -39,8 +39,16 @@ module.exports = (baseConfig, env, defaultConfig) => {
   });
   defaultConfig.module.rules.push({
     test: /\.css$/,
-    use: ['to-string-loader', 'css-loader'],
+    use: ['css-loader'],
   });
+  defaultConfig.module.rules.push({
+    test: /\.scss$/,
+    use: [
+      { loader: 'css-loader', options: { importLoaders: 2 } },
+      'sass-loader',
+    ],
+  });
+
   defaultConfig.resolve.extensions.push('.ts', '.tsx', '.wasm');
   defaultConfig.resolve.plugins = [
     new TsconfigPathsPlugin({

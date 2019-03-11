@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "module": "esnext",
     "target": "es6",
+    "module": "esnext",
     "moduleResolution": "node",
     "removeComments": true,
     "preserveConstEnums": true,
     "outDir": "./dist",
     "sourceMap": true,
     "baseUrl": ".",
+    "importHelpers": true,
     "paths": {
       "synbod-pivot-table-crate-pkg": [
         "./components/synbod-pivot-table/crate/pkg"
@@ -15,10 +16,5 @@
     }
   },
   "include": ["components/**/*"],
-  "exclude": ["node_modules"],
-  "plugins": [
-    {
-      "name": "typescript-tslint-plugin"
-    }
-  ]
+  "exclude": ["node_modules"]
 }

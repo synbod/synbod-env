@@ -1,24 +1,29 @@
 import { configure, addDecorator } from '@storybook/polymer';
+import addons, { makeDecorator } from '@storybook/addons';
 import { document } from 'global';
-import { render } from 'lit-html';
 
-const litDecorator = (story, context, param) => {
-  const component = story();
-  if (!(component instanceof HTMLElement)) {
-    const el = document.createElement('section'); // this element probably can br reused.
-    render(component, el);
-    return el;
-  }
+const litDecorator = makeDecorator({
+  name: 'lit',
+  parameterName: 'exports',
+  skipIfNoParametersOrOptions: true,
+  wrapper: (getStory, context, { parameters }) => {
+    const component = getStory();
+    if (!(component instanceof HTMLElement)) {
+      const { render } = parameters;
+      const el = document.createElement('section'); // this element probably can br reused.
+      render(component, el);
+      return el;
+    }
 
-  return story();
-};
+    return getStory(context);
+  },
+});
 addDecorator(litDecorator);
 
-const req = require.context('../components', true, /\.stories.js$/);
+const req = require.context('../components', true, /storybook_stories\/.*.js$/);
 
 function loadStories() {
   const contexts = req.keys();
-  console.log('context', contexts);
   contexts.forEach((filename) => req(filename));
 }
 

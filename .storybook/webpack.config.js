@@ -30,11 +30,16 @@ function searchRecursive(dir, pattern) {
 }
 
 module.exports = (baseConfig, env, defaultConfig) => {
+  defaultConfig.devtool = 'eval-source-map';
   defaultConfig.module.rules[0].exclude = /node_modules\/(?!(@webcomponents\/shadycss|lit-html|@polymer|@vaadin|@lit)\/).*/;
   defaultConfig.module.rules.push({
     test: /\.tsx?$/,
     use: 'ts-loader',
     exclude: /node_modules/,
+  });
+  defaultConfig.module.rules.push({
+    test: /\.css$/,
+    use: ['to-string-loader', 'css-loader'],
   });
   defaultConfig.resolve.extensions.push('.ts', '.tsx', '.wasm');
   defaultConfig.resolve.plugins = [
@@ -43,17 +48,12 @@ module.exports = (baseConfig, env, defaultConfig) => {
       mainFields: ['module'],
     }),
   ];
-  // defaultConfig.resolve.alias['synbod-pivot-table-crate'] = path.resolve(
-  //   __dirname,
-  //   '../components/synbod-pivot-table/crate'
-  // );
 
   // compile wasms
   const dirs = searchRecursive(
     path.resolve(__dirname, '../components'),
     'Cargo.toml'
   );
-  // console.log('dirs', dirs);
   dirs.forEach((dir) => {
     defaultConfig.plugins.push(new WasmPackPlugin({ crateDirectory: dir }));
   });

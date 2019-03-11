@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "storybook": "start-storybook -p 6006",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "fix:resolutions": "npx rimraf node_modules && npx npm-force-resolutions && npm install"
   },
   "repository": {
     "type": "git",
@@ -44,16 +44,27 @@
     "singleQuote": true,
     "arrowParens": "always"
   },
+  "resolutions": {
+    "webpack": "4.28.4"
+  },
   "devDependencies": {
-    "@storybook/polymer": "^4.1.4",
+    "@babel/core": "^7.3.4",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.3.4",
+    "@storybook/polymer": "4.1.4",
     "@wasm-tool/wasm-pack-plugin": "^0.2.0",
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "babel-preset-env": "^1.7.0",
-    "lit-html": "^0.10.0",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
+    "loader-runner": "^3.0.0",
     "polymer-webpack-loader": "^2.0.3",
+    "to-string-loader": "^1.1.5",
     "ts-loader": "^5.3.2",
     "tsconfig-paths-webpack-plugin": "^3.2.0",
     "typescript": "^3.2.2"
+  },
+  "dependencies": {
+    "lit-element": "^2.0.1",
+    "lit-html": "^1.0.0",
+    "normalize.css": "^8.0.1"
   }
 }
